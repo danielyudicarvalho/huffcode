@@ -28,7 +28,7 @@ void Huff::compress(string filename)
     string* codes = this->buildCode(node);
     string trie = this->transform(node);
     string bitflow = this->transform(text, codes);
-    string outputFilename = getFileWithoutExtension(filename, find(filename, '.')) + ".freq";
+    string outputFilename = getFileWithoutExtension(filename, find(filename, '.')) + ".hfz";
     this->write(getFileExtension(filename, find(filename, '.')), trie, text.size(), bitflow, outputFilename);
 }
 
@@ -45,7 +45,7 @@ void Huff::expand(string filename)
     int size = this->readSize(&text);
     string bitflow = this->bytesToBitflow(text);
     string translated = this->translate(bitflow, size, root);
-    this->write(translated, getFileWithoutExtension(filename, find(filename, '.')) + ".defreq");
+    this->write(translated, getFileWithoutExtension(filename, find(filename, '.')) + "." + ext);
 }
 
 // Private.
